@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: star-wars-scanner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: star-wars-scanner
+  template:
+    metadata:
+      labels:
+        app: star-wars-scanner
+    spec:
+      containers:
+        - name: star-wars-scanner
+          image: pinky2205/star-wars-scanner:latest
+          command: ["/bin/sh", "-c", "while true; do sleep 3600; done"]
+          # Keeps the container alive without auto-executing the script
+          stdin: true
+          tty: true
+
